@@ -26,7 +26,7 @@ async function run() {
     console.log('Successfully connected to MongoDB!');
 
     app.get('/', (req, res) => {
-      res.send('Task Master Server');
+      res.send(`Task Master Server ${uri}`);
     });
 
     app.get('/tasks', async (req, res) => {
