@@ -1,12 +1,15 @@
-require('dotenv').config();
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+
+
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config()
+const port = process.env.PORT || 5000;
 const app = express();
-const port = 5000;
-
-app.use(express.json());
+// middleware
 app.use(cors());
+app.use(express.json());
+
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
 const uri = process.env.DATABASE_URI;
 
@@ -23,15 +26,16 @@ async function run() {
     await client.connect();
     const db = await client.db('taskmaster');
     const tasksCollection = db.collection('tasks');
-    console.log('Successfully connected to MongoDB!');
+    console.log('Successfully connected to MongoDB!'+uri);
 
-    app.get('/', (req, res) => {
-      res.send(`Task Master Server ${uri}`);
-    });
+    // app.get('/t', (req, res) => {
+    //   res.send(`Task Master Server ${uri}`);
+    // });
 
     app.get('/tasks', async (req, res) => {
       try {
         const tasks = await tasksCollection.find({}).toArray();
+        console.log(tasks)
         res.json(tasks);
       } catch (err) {
         console.error('Error fetching tasks:', err);
