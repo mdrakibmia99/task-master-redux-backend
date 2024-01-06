@@ -11,7 +11,7 @@ app.use(express.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 
-const uri = process.env.DATABASE_URI;
+const uri = "mongodb+srv://taskMaster:fa0rPNlqX8UEoEv6@taskmaster.xualaxs.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
   serverApi: {
