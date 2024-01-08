@@ -1,6 +1,6 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
+const app = express();
 require('dotenv').config()
 const port = process.env.PORT || 5000;
 // middleware
@@ -33,7 +33,7 @@ async function run() {
     app.get('/allTasks', async (req, res) => {
         const tasks = await tasksCollection.find({}).toArray();
         console.log(tasks)
-        res.json(tasks);
+        res.json({name:"Hello"});
 
     });
 
