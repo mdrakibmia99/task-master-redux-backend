@@ -30,10 +30,10 @@ async function run() {
     //   res.send(`Task Master Server ${uri}`);
     // });
 
-    app.get('/allTasks', async (req, res) => {
-        // const tasks = await tasksCollection.find({}).toArray();
-        // console.log(tasks)
-        res.json({name:"Hello"});
+    app.get('/tasks', async (req, res) => {
+        const tasks = await tasksCollection.find({}).toArray();
+        console.log(tasks)
+        res.json(tasks);
 
     });
 
@@ -93,7 +93,7 @@ async function run() {
 }
 run().catch(console.dir);
 app.get('/', (req, res) => {
-  res.send('task master server is Running')
+  res.send('task master server is Running-->')
 })
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
