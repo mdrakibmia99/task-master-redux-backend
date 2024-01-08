@@ -31,14 +31,10 @@ async function run() {
     // });
 
     app.get('/tasks', async (req, res) => {
-      try {
         const tasks = await tasksCollection.find({}).toArray();
         console.log(tasks)
         res.json(tasks);
-      } catch (err) {
-        console.error('Error fetching tasks:', err);
-        res.status(500).json({ error: 'Internal Server Error' });
-      }
+
     });
 
     app.post('/tasks', async (req, res) => {
