@@ -30,7 +30,7 @@ async function run() {
     //   res.send(`Task Master Server ${uri}`);
     // });
 
-    app.get('/tasks', async (req, res) => {
+    app.get('/allTasks', async (req, res) => {
         const tasks = await tasksCollection.find({}).toArray();
         console.log(tasks)
         res.json(tasks);
