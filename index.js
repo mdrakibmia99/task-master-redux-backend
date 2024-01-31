@@ -18,13 +18,8 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
-async function run() {
-  try {
-    await client.connect();
-    const db = await client.db('taskmaster');
+    const db = client.db('taskmaster');
     const tasksCollection = db.collection('tasks');
-    console.log('Successfully connected to MongoDB!'+uri);
 
     // app.get('/t', (req, res) => {
     //   res.send(`Task Master Server ${uri}`);
@@ -88,10 +83,8 @@ async function run() {
         res.status(500).json({ error: 'Internal Server Error' });
       }
     });
-  } finally {
-  }
-}
-run().catch(console.dir);
+  
+
 app.get('/', (req, res) => {
   res.send('task master server is Running-->')
 })
